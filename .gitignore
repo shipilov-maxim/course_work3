@@ -1,4 +1,4 @@
 .idea
 .py
 venv\
-venv
+venv/
