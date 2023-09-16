@@ -15,4 +15,5 @@ def list(glos):
             print(f"{glo['date']}")
 
 
+
 list(load_json(JSON_FILE))
