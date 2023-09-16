@@ -34,10 +34,9 @@ class Operation:
 
     def account_view(self, account):
         if 'Счет' in account:
-            return f"Счёт **{account[len(account) - 4: ]}"
+            return f"Счёт **{account[-4:]}"
         else:
-            l = len(account)
-            return f"{account[0: l - 16]}{account[l - 16: l - 12]} {account[l - 12: l - 10]}** **** {account[l - 4: ]}"
+            return f"{account[0:-16]}{account[-16:-12]} {account[-12:-10]}** **** {account[-4:]}"
 
     def __repr__(self):
         return (f'{self.date_view()} {self.description}\n'
@@ -45,18 +44,24 @@ class Operation:
                 f'{self.amount_view()}\n')
 
 
+def sort_data(UP):
+    sorted_data = sorted(UP, key=lambda x: x.get('date'), reverse=True)
+    return sorted_data
+
+
 list_clas_op = []
+# data = load_json(JSON_FILE)
+# sorted_data = sort_data(data)
 
-
-for opera in load_json(JSON_FILE):
+for operation in load_json(JSON_FILE):
     try:
-        list_clas_op.append(Operation(opera['id'],
-                                      opera['state'],
-                                      opera['date'],
-                                      opera['operationAmount'],
-                                      opera['description'],
-                                      opera['from'],
-                                      opera['to'])
+        list_clas_op.append(Operation(operation['id'],
+                                      operation['state'],
+                                      operation['date'],
+                                      operation['operationAmount'],
+                                      operation['description'],
+                                      operation['from'],
+                                      operation['to'])
                             )
     except KeyError:
         pass
@@ -64,7 +69,6 @@ for opera in load_json(JSON_FILE):
 o = list_clas_op[0:]
 
 for i in o:
-    # print(i)
     if i.is_executed():
         print(i)
 
