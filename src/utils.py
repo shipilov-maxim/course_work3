@@ -44,14 +44,15 @@ class Operation:
                 f'{self.amount_view()}\n')
 
 
-def sort_data(UP):
-    sorted_data = sorted(UP, key=lambda x: x.get('date'), reverse=True)
+def sort_data(data_):
+    dataa = {x for x in data_ if x['date'] is not None}
+    sorted_data = sorted(dataa, key=lambda x: x.get('date'), reverse=True)
     return sorted_data
 
 
 list_clas_op = []
 # data = load_json(JSON_FILE)
-# sorted_data = sort_data(data)
+# sorted_dat = sort_data(data)
 
 for operation in load_json(JSON_FILE):
     try:
