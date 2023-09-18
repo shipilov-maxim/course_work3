@@ -5,7 +5,6 @@ from src.utils import list_class
 from src.utils import clear_data
 
 
-
 def main():
     data = load_json(JSON_FILE)
     cleared_data = clear_data(data)
