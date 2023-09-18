@@ -20,16 +20,22 @@ class Operation:
     def amount_view(self):
         return f"{self.operation_amount['amount']} {self.operation_amount['currency']['name']}"
 
-    def account_view(self, account):
-        if 'Счет' in account:
-            return f"Счёт **{account[-4:]} -> "
-        elif account == "":
+    def from_view(self):
+        if 'Счет' in self.from_:
+            return f"Счёт **{self.from_[-4:]} -> "
+        elif self.from_ == "":
             return f""
         else:
-            return f"{account[0:-16]}{account[-16:-12]} {account[-12:-10]}** **** {account[-4:]} -> "
+            return f"{self.from_[0:-16]}{self.from_[-16:-12]} {self.from_[-12:-10]}** **** {self.from_[-4:]} -> "
+
+    def to_view(self):
+        if 'Счет' in self.to:
+            return f"Счёт **{self.to[-4:]}"
+        else:
+            return f"{self.to[0:-16]}{self.to[-16:-12]} {self.to[-12:-10]}** **** {self.to[-4:]}"
 
     def __repr__(self):
         return (f'{self.date_view()} {self.description}\n'
-                f'{self.account_view(self.from_)}{self.account_view(self.to)}\n'
+                f'{self.from_view()}{self.to_view()}\n'
                 f'{self.amount_view()}\n')
 

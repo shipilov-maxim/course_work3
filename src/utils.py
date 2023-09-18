@@ -25,6 +25,7 @@ def clear_data(data_):
                 except KeyError:
                     item['from'] = ""
                     clear_data.append(item)
+                clear_data.append(item)
         except KeyError:
             pass
     return clear_data
