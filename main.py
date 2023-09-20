@@ -1,8 +1,4 @@
-from src.utils import sort_data
-from src.utils import JSON_FILE
-from src.utils import load_json
-from src.utils import list_class
-from src.utils import clear_data
+from src.utils import load_json, sort_data, clear_data, list_class, JSON_FILE
 
 
 def main():
@@ -12,6 +8,7 @@ def main():
     list_operations = list_class(sorted_data)
     for item in list_operations[:5]:
         print(item)
+
 
 if __name__ == '__main__':
     main()

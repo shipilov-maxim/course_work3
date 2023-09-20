@@ -8,6 +8,11 @@ class Operation:
         self.from_ = from_
         self.to = to
 
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return self.id_ == other.id_
+
+
     def is_executed(self):
         if self.state == "EXECUTED":
             return True

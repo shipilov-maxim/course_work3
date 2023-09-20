@@ -16,30 +16,31 @@ def sort_data(data_):
 
 
 def clear_data(data_):
-    clear_data = []
+    clear_data_list = []
     for item in data_:
         try:
             if item['state'] == "EXECUTED":
                 try:
-                    item['from'] *= 1
+                    item['from']
                 except KeyError:
                     item['from'] = ""
-                    clear_data.append(item)
-                clear_data.append(item)
+                    clear_data_list.append(item)
+                    continue
+                clear_data_list.append(item)
         except KeyError:
             pass
-    return clear_data
+    return clear_data_list
 
 
-def list_class(list):
-    list_class = []
-    for operation in list:
-        list_class.append(Operation(operation['id'],
-                                    operation['state'],
-                                    operation['date'],
-                                    operation['operationAmount'],
-                                    operation['description'],
-                                    operation['from'],
-                                    operation['to'])
-                          )
-    return list_class
+def list_class(list_ops):
+    list_class_ops = []
+    for operation in list_ops:
+        list_class_ops.append(Operation(operation['id'],
+                                        operation['state'],
+                                        operation['date'],
+                                        operation['operationAmount'],
+                                        operation['description'],
+                                        operation['from'],
+                                        operation['to'])
+                              )
+    return list_class_ops
